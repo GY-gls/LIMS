@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: lims_kb
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lims?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
