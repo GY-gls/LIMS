@@ -1,20 +1,14 @@
-package com.kb.lims.entity;
+package com.kb.lims.dto;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Data
-@TableName("user")
-public class User implements Serializable {
-
-    @TableId(value = "id",type = IdType.AUTO)
-    private Integer id;
-
+//@Data
+public class UserDTO implements Serializable{
     private String name;
 
     private String phone;
@@ -22,24 +16,6 @@ public class User implements Serializable {
     private String email;
 
     private String personType;
-
-    private Timestamp createdAt;
-
-    public String getPersonType() {
-        return personType;
-    }
-
-    public void setPersonType(String personType) {
-        this.personType = personType;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -65,11 +41,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public String getPersonType() {
+        return personType;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setPersonType(String personType) {
+        this.personType = personType;
     }
 }

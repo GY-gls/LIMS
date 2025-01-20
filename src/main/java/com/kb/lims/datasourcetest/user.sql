@@ -5,7 +5,7 @@ CREATE TABLE user (
                       name VARCHAR(100) NOT NULL,
                       phone VARCHAR(20),
                       email VARCHAR(100),
-                      person_type VARCHAR(50),
+                      person_type VARCHAR(1),
                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 # 测试数据
