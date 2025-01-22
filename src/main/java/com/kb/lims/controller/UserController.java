@@ -16,8 +16,10 @@ import java.sql.Timestamp;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     @Resource
     private UserService userService;
+
     @GetMapping("getAllUsers")
     public Result getAllUsers(){
         System.out.println("run---------------------");

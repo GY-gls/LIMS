@@ -32,7 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        UserMapper userMapper1 = new UserMapper();
         List<User> userList = userMapper.selectList(null);
         if (userList.size() == 0) {
-            return Result.error(Code.EMPTY_USER_LIST, "用户信息为空");
+            return Result.error(Code.EMPTY_LIST, "用户信息为空");
         }
         userList.forEach(System.out::println);
         return Result.success(userList);
@@ -46,7 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public Result addUser(UserDTO userDTO){
-        Result result = validateInfo(userDTO);
+        Result result = validateUserInfo(userDTO);
         if(result.isSuccess()) {
             User user = new User();
             BeanUtils.copyProperties(userDTO, user);
@@ -77,10 +77,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public Result updateUser(int id, UserDTO userDTO){
-        Result result = validateInfo(userDTO);
-        if(result.isSuccess()) {
-            userMapper.updateById(id, userDTO);
-        }
+        Result result = validateUserInfo(userDTO);
+        if(result.isSuccess()) userMapper.updateById(id, userDTO);
         return result;
     }
 
@@ -97,8 +95,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     // helper functions for addUser and updateUser
-    private Result validateInfo(UserDTO userDTO){
-        if(userDTO.getName().isEmpty()) return Result.error(Code.EMPTY_NAME, "名字不可为空");
+    private Result validateUserInfo(UserDTO userDTO){
+        if(userDTO.getName().isEmpty()) return Result.error(Code.EMPTY_NAME, "用户名称不可为空");
         if(!validPhone(userDTO.getPhone())) return Result.error(Code.INVALID_PHONE, "手机号码格式错误");
         if(!validEmail(userDTO.getEmail())) return Result.error(Code.INVALID_EMAIL, "邮箱地址格式错误");
         if(!validPersonType(userDTO.getPersonType())) return Result.error(Code.INVALID_PERSON_TYPE, "用户权限格式错误：请输入0到3之间的数字");
