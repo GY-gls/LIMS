@@ -99,7 +99,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if(userDTO.getName().isEmpty()) return Result.error(Code.EMPTY_NAME, "用户名称不可为空");
         if(!validPhone(userDTO.getPhone())) return Result.error(Code.INVALID_PHONE, "手机号码格式错误");
         if(!validEmail(userDTO.getEmail())) return Result.error(Code.INVALID_EMAIL, "邮箱地址格式错误");
-        if(!validPersonType(userDTO.getPersonType())) return Result.error(Code.INVALID_PERSON_TYPE, "用户权限格式错误：请输入0到3之间的数字");
+        if(!validPersonType(userDTO.getPersonType())) {
+            return Result.error(Code.INVALID_PERSON_TYPE, "用户权限格式错误：请输入0到3之间的数字");
+        }
         return Result.success(null);
     }
 

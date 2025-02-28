@@ -9,6 +9,7 @@ import com.kb.lims.service.BenchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -78,6 +79,30 @@ public class BenchServiceImpl extends ServiceImpl<BenchMapper, Bench> implements
     public Result deleteBench(int id) {
         benchMapper.deleteById(id);
         return Result.success(null);
+    }
+
+    /**
+     * 根据id获取上次校准日期
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Result getLastCalibrationDate(int id) {
+        Timestamp date = benchMapper.getLastCalibrationDate(id);
+        return Result.success(date);
+    }
+
+    /**
+     * 根据id获取校准周期
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Result getCalibrationPeriod(int id) {
+        Integer period = benchMapper.getCalibrationPeriod(id);
+        return Result.success(period);
     }
 
 

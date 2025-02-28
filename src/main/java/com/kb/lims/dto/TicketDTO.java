@@ -3,11 +3,14 @@ package com.kb.lims.dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+//@Data
 public class TicketDTO implements Serializable {
 
     private String initiator;
 
     private String receiver;
+
+    private String auditor;
 
     private Integer benchId;
 
@@ -31,6 +34,14 @@ public class TicketDTO implements Serializable {
 
     public void setReceiver(String receiver) {
         this.receiver = receiver;
+    }
+
+    public String getAuditor() {
+        return auditor;
+    }
+
+    public void setAuditor(String auditor) {
+        this.auditor = auditor;
     }
 
     public Integer getBenchId() {

@@ -127,6 +127,7 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     private Result validateTicketInfo(TicketDTO ticketDTO){
         if(ticketDTO.getInitiator().isEmpty()) return Result.error(Code.EMPTY_NAME, "发起人名称为空");
         if(ticketDTO.getReceiver().isEmpty()) return Result.error(Code.EMPTY_NAME, "对接人名称为空");
+        if(ticketDTO.getAuditor().isEmpty()) return Result.error(Code.EMPTY_NAME, "审核人名称为空");
         return Result.success(null);
     }
 }

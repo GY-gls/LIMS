@@ -21,7 +21,12 @@ public class Result {
      * @return 返回一个包含成功信息的Result对象
      */
     public static Result success(Object data){
-        return new Result(true,200,"success",data);
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setCode(200);
+        result.setMessage("success");
+        result.setData(data);
+        return result;
     }
 
     /**
@@ -33,7 +38,12 @@ public class Result {
      * @return 返回一个包含错误信息的Result对象
      */
     public static Result error(Integer code,String message){
-        return new Result(false,code,message,null);
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setCode(code);
+        result.setMessage(message);
+        result.setData(null);
+        return result;
     }
 
 

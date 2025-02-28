@@ -2,13 +2,15 @@ package com.kb.lims.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-// note：Bench没有设置DTO因为BenchDTO和Bench太相似了（BenchDTO只会比Bench少一个id）
+// Bench没有设置DTO因为BenchDTO和Bench太相似了（BenchDTO只会比Bench少一个id）
 //@Data
+@TableName("bench")
 public class Bench implements Serializable {
 
     @TableId(value = "id",type = IdType.AUTO)
@@ -18,7 +20,7 @@ public class Bench implements Serializable {
 
     private String location; // 苏州、重庆、大连
 
-    private String projectName;
+    private String projectName; // 所属项目名称
 
     private Timestamp dateOfPurchase;
 
@@ -27,6 +29,10 @@ public class Bench implements Serializable {
     private String state;
 
     private String user;
+
+    private Timestamp lastCalibrationDate;
+
+    private Integer calibrationPeriod; // 校准周期精准到天
 
     public Integer getId() {
         return id;
@@ -92,4 +98,19 @@ public class Bench implements Serializable {
         this.user = user;
     }
 
+    public Timestamp getLastCalibrationDate() {
+        return lastCalibrationDate;
+    }
+
+    public void setLastCalibrationDate(Timestamp lastCalibrationDate) {
+        this.lastCalibrationDate = lastCalibrationDate;
+    }
+
+    public Integer getCalibrationPeriod() {
+        return calibrationPeriod;
+    }
+
+    public void setCalibrationPeriod(Integer calibrationPeriod) {
+        this.calibrationPeriod = calibrationPeriod;
+    }
 }

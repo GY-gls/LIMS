@@ -2,7 +2,6 @@ package com.kb.lims.controller;
 
 import com.kb.lims.dto.Result;
 import com.kb.lims.dto.TicketDTO;
-import com.kb.lims.entity.Ticket;
 import com.kb.lims.service.TicketService;
 import org.springframework.web.bind.annotation.*;
 

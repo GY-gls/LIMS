@@ -8,7 +8,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Data
+//@Data
 @TableName("user")
 public class User implements Serializable {
 

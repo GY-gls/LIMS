@@ -14,4 +14,8 @@ public interface BenchService extends IService<Bench> {
     Result updateBench(int id, Bench bench);
 
     Result deleteBench(int id);
+
+    Result getLastCalibrationDate(int id);
+
+    Result getCalibrationPeriod(int id);
 }
