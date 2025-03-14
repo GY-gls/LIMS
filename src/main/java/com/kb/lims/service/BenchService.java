@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.kb.lims.dto.Result;
 import com.kb.lims.entity.Bench;
 
+import java.sql.Timestamp;
+
 public interface BenchService extends IService<Bench> {
     Result getAllBenches();
 
@@ -18,4 +20,6 @@ public interface BenchService extends IService<Bench> {
     Result getLastCalibrationDate(int id);
 
     Result getCalibrationPeriod(int id);
+
+    Result getAvailableBenches(Timestamp startDate, Timestamp endDate);
 }

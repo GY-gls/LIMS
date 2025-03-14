@@ -36,12 +36,12 @@ public class UserController {
         return userService.getPersonType(id);
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("update/{id}")
     public Result updateUser(@PathVariable int id, @RequestBody UserDTO userDTO) {
         return userService.updateUser(id, userDTO);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("delete/{id}")
     public Result deleteUser(@PathVariable int id) {
         return userService.deleteUser(id);
     }

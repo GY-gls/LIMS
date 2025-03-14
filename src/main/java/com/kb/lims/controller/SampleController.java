@@ -29,12 +29,12 @@ public class SampleController {
         return sampleService.addSample(sample);
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("update/{id}")
     public Result updateSample(@PathVariable int id, @RequestBody Sample sample){
         return sampleService.updateSample(id, sample);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("delete/{id}")
     public Result deleteSample(@PathVariable int id){
         return sampleService.deleteSample(id);
     }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kb.lims.mapper.DvpMapper">
+
+    <update id="updateById">
+        update dvp
+
+        set name = #{dvp.name}, status = #{dvp.status}, plan_creator = #{dvp.planCreator}, creator_id = #{dvp.creatorId},
+        rd_manager = #{dvp.RDManager}, supervisor = #{dvp.supervisor}, dvp_number = #{dvp.dvpNumber},
+        product = #{dvp.product}, revision = #{dvp.revision}, coc = #{dvp.COC},
+        verification_and_validation_scope = #{dvp.verificationAndValidationScope}, kb_part_number = #{dvp.KBPartNumber},
+        customer_part_number = #{dvp.customerPartNumber}, customer_project = #{dvp.customerProject},
+        rd_approval = #{dvp.RDApproval}, rd_date = #{dvp.RDDate}, individual_test_request = #{dvp.individualTestRequest},
+        task_number = #{dvp.taskNumber}, task_summary = #{dvp.taskSummary}, task_name = #{dvp.taskName}
+
+        where id = #{id}
+    </update>
+
+    <select id="getDvpByUserId" resultType="com.kb.lims.entity.Dvp">
+        select * from dvp
+        <where>
+            <if test="id != null">
+                creator_id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addDvp">
+        insert into dvp
+        (name, status, plan_creator, creator_id, rd_manager, supervisor, dvp_number, product, revision, coc,
+        verification_and_validation_scope, kb_part_number, customer_part_number,customer_project,
+        rd_approval, rd_date, individual_test_request, task_number, task_summary, task_name)
+        values
+        (#{name}, #{status}, #{planCreator}, #{creatorId}, #{RDManager}, #{supervisor}, #{dvpNumber},
+        #{product}, #{revision}, #{COC}, #{verificationAndValidationScope}, #{KBPartNumber},
+        #{customerPartNumber}, #{customerProject}, #{RDApproval}, #{RDDate}, #{individualTestRequest},
+        #{taskNumber}, #{taskSummary}, #{taskName})
+    </insert>
+</mapper>

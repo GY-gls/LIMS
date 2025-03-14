@@ -29,12 +29,12 @@ public class TicketController {
         return ticketService.addTicket(ticketDTO);
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("update/{id}")
     public Result updateTicket(@PathVariable int id, @RequestBody TicketDTO ticketDTO){
         return ticketService.updateTicket(id, ticketDTO);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("delete/{id}")
     public Result deleteTicket(@PathVariable int id){
         return ticketService.deleteTicket(id);
     }

@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BenchServiceImpl extends ServiceImpl<BenchMapper, Bench> implements BenchService {
@@ -103,6 +105,19 @@ public class BenchServiceImpl extends ServiceImpl<BenchMapper, Bench> implements
     public Result getCalibrationPeriod(int id) {
         Integer period = benchMapper.getCalibrationPeriod(id);
         return Result.success(period);
+    }
+
+    /**
+     * 根据用户提供的台架预计使用日期（起始日期，结束日期），返回该时间段内所有可以使用的台架。
+     * 可以使用：在预计使用日期内是空闲状态（没有其他时间冲突的需求单），并且状态不能是修理中或损坏
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    @Override
+    public Result getAvailableBenches(Timestamp startDate, Timestamp endDate) {
+        List<Bench> benchList = benchMapper.getAvailableBenches(startDate, endDate);
+        return Result.success(benchList);
     }
 
 

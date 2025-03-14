@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kb.lims.mapper.TestRequestMapper">
+
+    <select id="getTestRequestsByUserId" resultType="com.kb.lims.entity.TestRequest">
+        select * from test_request
+        <where>
+            <if test="id != null">
+                creator_id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateById">
+        update test_request
+        set
+        name = #{tr.name}, status = #{tr.status}, target = #{tr.target}, cost_center = #{tr.costCenter},
+        project_number = #{tr.projectNumber}, sample_id = #{tr.sampleId},
+        drawing_including_revision = #{tr.drawingIncludingRevision}, individual_requests = #{tr.individualRequests},
+        dvp_id = #{tr.dvpId}, task_number = #{tr.taskNumber}, task_name = #{tr.taskName}, comments = #{tr.comments},
+        due_date = #{tr.dueDate}, samples_available_from = #{tr.samplesAvailableFrom}, rd_manager = #{tr.RDManager},
+        division = #{tr.division}, creator_id = #{tr.creatorId}
+
+        where id = #{id}
+    </update>
+
+    <insert id="addTestRequest">
+        insert into test_request
+        (name, status, target, cost_center, project_number, sample_id,
+        drawing_including_revision, individual_requests, dvp_id, task_number, task_name, comments,
+        due_date, samples_available_from, rd_manager, division, creator_id)
+        values
+        (#{name}, #{status}, #{target}, #{costCenter}, #{projectNumber}, #{sampleId},
+        #{drawingIncludingRevision}, #{individualRequests}, #{dvpId}, #{taskNumber}, #{taskName}, #{comments},
+        #{dueDate}, #{samplesAvailableFrom}, #{RDManager}, #{division}, #{creatorId})
+    </insert>
+</mapper>

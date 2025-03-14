@@ -6,7 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Map;
 
 public interface BenchMapper extends BaseMapper<Bench> {
 
@@ -21,4 +24,11 @@ public interface BenchMapper extends BaseMapper<Bench> {
 
     @Select("select calibration_period from bench where id = #{id}")
     Integer getCalibrationPeriod(int id);
+
+    @Select("select * from bench where id not in " +
+            "(select bench_id from ticket where " +
+            "(#{startDate} >= start_date and #{startDate} <= end_date) or " +
+            "(#{endDate} >= start_date and #{endDate} <= end_date)) " +
+            "and state != '修理中' and state != '损坏'")
+    List<Bench> getAvailableBenches(@Param("startDate") Timestamp startDate, @Param("endDate") Timestamp endDate);
 }

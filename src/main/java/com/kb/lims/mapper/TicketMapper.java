@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface TicketMapper extends BaseMapper<Ticket> {
 
-    @Update("update ticket set initiator = #{ticketDTO.initiator}, receiver = #{ticketDTO.receiver}, " +
+    @Update("update ticket set initiator = #{ticketDTO.initiator}, receiver = #{ticketDTO.receiver}, auditor = #{ticketDTO.auditor}, " +
             "bench_id = #{ticketDTO.benchId}, start_date = #{ticketDTO.startDate}, end_date = #{ticketDTO.endDate}, " +
             "state = #{ticketDTO.state} where id = #{id}")
     void updateById(@Param("id") int id, @Param("ticketDTO") TicketDTO ticketDTO);
